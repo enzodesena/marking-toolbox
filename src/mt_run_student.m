@@ -18,6 +18,11 @@ student_filepath = mt_filepath(mt_settings.output_dir, student_data);
 mark = mt_settings.initial_mark + sum(penalties) + ...
        mt_settings.penalty_per_day_of_delay*student_data.days_of_delay;
 
+%% Create output directory, if it doesn't exist already
+if exist(mt_settings.output_dir) ~= 7
+    mkdir(mt_settings.output_dir);
+end
+
 %% Generate latex file and write it out
 latex = mt_generate_feedback(student_data, questions_title, ...
                              questions_remarks, mark, mt_settings);

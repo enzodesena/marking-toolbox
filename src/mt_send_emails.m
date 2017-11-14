@@ -19,12 +19,15 @@ mt_settings = mt_settings_load(settings_filename);
 [num_students, ~] = size(students_data);
 
 %% Checking all the files are here
+disp('Checking all the files are here.');
 for student_id = 1:num_students % First row is variable names
     student_data = mt_create_student_struct(students_data(student_id, :));
     
     %% Read email
     student_filepath = mt_filepath(mt_settings.output_dir, student_data);
     assert(exist(student_filepath + '.txt','file') == 2, 'File not found');
+    message = fileread(char(student_filepath + '.txt'));
+    assert(strlength(message) > 0);
     assert(exist(student_filepath + '.pdf','file') == 2, 'File not found');
 end
 
@@ -72,7 +75,6 @@ props.setProperty('mail.smtp.auth', 'true');
 props.setProperty('mail.smtp.user', mail);
 props.setProperty('mail.smtp.starttls.enable', 'true');
 props.setProperty('mail.transport.protocol', 'smtps');
-
 
 % Send the email
 sendmail(address,subject,message)

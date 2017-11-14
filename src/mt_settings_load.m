@@ -3,7 +3,7 @@
 % Marking Matlab Toolbox
 % Copyright Enzo De Sena 2017
 
-function mt_settings = mt_settings_sanity_check(settings_filename)
+function mt_settings = mt_settings_load(settings_filename)
 
 assert(exist(settings_filename,'file') == 2, ...
         'Settings file not found' );

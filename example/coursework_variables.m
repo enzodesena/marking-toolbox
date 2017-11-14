@@ -22,6 +22,7 @@ mt_settings.message_no_remarks = 'This question was completed correctly.';
 
 %% Email settings
 mt_settings.send_emails = true;
+mt_settings.email_subject = mt_settings.feedback_title;
 mt_settings.email_template = 'email_template.txt';
 mt_settings.feedback_description = ...
             'the first coursework of the Sound Synthesis module';

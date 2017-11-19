@@ -26,3 +26,9 @@ mt_settings.email_subject = mt_settings.feedback_title;
 mt_settings.email_template = 'email_template.txt';
 mt_settings.feedback_description = ...
             'the first coursework of the Sound Synthesis module';
+
+mt_settings.sender_email = 'Enzo De Sena <ed0018@surrey.ac.uk>';
+mt_settings.email_appears_in_mac_mail = 'true';
+mt_settings.send_email_automatically = 'false';
+mt_settings.drive_name = 'Macintosh HD'; % TODO: extract this info automatically
+

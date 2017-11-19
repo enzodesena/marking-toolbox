@@ -45,6 +45,15 @@ if mt_settings.send_emails
     email = mt_generate_email(student_data, mark, mt_settings);
     mt_write_text_file(student_filepath + '.txt', email);
     
+    script = mt_generate_applescript(student_data.email, ...
+                                     mt_settings.email_subject, ...
+                                     email, ...
+                                     strcat(pwd, '/', student_filepath, '.pdf'), ... 
+                                     mt_settings);
+    mt_write_text_file(student_filepath + '.script', script);
+end
+
+    
 %% Write out log text file
 mt_write_text_file(student_filepath + '.log', log);
 end

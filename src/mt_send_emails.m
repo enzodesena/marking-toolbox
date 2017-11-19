@@ -43,40 +43,12 @@ for student_id = 1:num_students % First row is variable names
     
     disp('Sending out email to ' + student_data.name + {' '} + ...
         student_data.surname + {' ('} + student_data.email + ').');
-%     mt_send_email(student_data.email, mt_settings.email_subject,...
-%                   message, student_filepath + '.pdf', ...
-%                   mt_settings);
+    system(char('cat ' + student_filepath + '.script | osascript'));
 end
 
 disp('All emails sent.');
 
 end
 
-function mt_send_email(address, subject, message, attachment, mt_settings)
-% Define these variables appropriately:
-mail = 'e.desena@surrey.ac.uk'; %Your GMail email address
-password = 'p4pp0nE84752'; %Your GMail password
 
-% Then this code will set up the preferences properly:
-setpref('Internet','E_mail',mail);
-setpref('Internet','SMTP_Server','smtp.office365.com');
-setpref('Internet','SMTP_Username',mail);
-setpref('Internet','SMTP_Password',password);
-props = java.lang.System.getProperties;
-props.setProperty('mail.smtp.auth','true');
-props.setProperty('mail.smtp.starttls.enable', 'true');
-props.setProperty('mail.smtp.socketFactory.fallback', 'true');
-props.setProperty('mail.smtp.socketFactory.class', 'javax.net.ssl.SSLSocketFactory');
-props.setProperty('mail.smtp.socketFactory.port','587');
 
-props.setProperty('mail.smtp.host', 'smtp.office365.com');
-props.setProperty('mail.smtp.port', '587');
-props.setProperty('mail.smtp.auth', 'true');
-props.setProperty('mail.smtp.user', mail);
-props.setProperty('mail.smtp.starttls.enable', 'true');
-props.setProperty('mail.transport.protocol', 'smtps');
-
-% Send the email
-sendmail(address,subject,message)
-
-end

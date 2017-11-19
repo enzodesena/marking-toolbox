@@ -12,7 +12,7 @@ mt_settings.macros = {'P11_GEQ', 'Hello GEQ: (penalty:-5)';
 %% Directories and filenames
 mt_settings.output_dir = 'outputs';
 mt_settings.feedback_template_filename = 'feedback_template.tex';
-mt_settings.marks_filename = 'marks.mat';
+mt_settings.marks_filename = 'Workbook1.txt';
 mt_settings.pdflatex_filename = '/Library/TeX/texbin/pdflatex';
 
 %% Feedback settings

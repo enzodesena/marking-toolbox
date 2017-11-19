@@ -45,7 +45,6 @@ if mt_settings.send_emails
     email = mt_generate_email(student_data, mark, mt_settings);
     mt_write_text_file(student_filepath + '.txt', email);
     
-    
 %% Write out log text file
 mt_write_text_file(student_filepath + '.log', log);
 end

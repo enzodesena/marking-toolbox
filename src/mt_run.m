@@ -3,7 +3,8 @@
 % Marking Matlab Toolbox
 % Copyright Enzo De Sena 2017
 
-function mt_run(settings_filename)
+function mt_run(settings_filename, only_student_id)
+
 
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
@@ -19,6 +20,12 @@ if isfield(mt_settings, 'macros') == 1
 end
 
 %% Run reports
+if nargin == 2 % If selected a specific student
+    num_students = 1;
+    students_data = students_data(only_student_id,:);
+    remarks = remarks(only_student_id,:);
+end
+
 marks = nan(num_students, 1);
 for student_id = 1:num_students % First row is variable names
     student_data = mt_create_student_struct(students_data(student_id, :));

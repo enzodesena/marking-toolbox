@@ -7,7 +7,7 @@ function [questions_title, students_data, remarks] = ...
             mt_data_load(data_filename)
 
 assert(exist(data_filename,'file') == 2, ...
-       'File not found: marks.mat');
+       strcat('File not found: ',data_filename));
 % load(data_filename); % Load
 % data = tdfread(data_filename);
 data_text = fileread(data_filename);
@@ -41,7 +41,7 @@ assert(strcmp(data{1,5}, 'Days of delay'), ...
 
 for n=1:N
     for k=1:K
-        data{n,k} = string(data{n,k});
+        data{n,k} = strrep(string(data{n,k}), '"', '');
     end
 end
 

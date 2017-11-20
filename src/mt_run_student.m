@@ -33,12 +33,13 @@ command_compile = char(strcat(mt_settings.pdflatex_filename, {' '}, ...
              {'-output-directory '}, mt_settings.output_dir, {' '}, ...
              student_filepath, '.tex'));
 system(command_compile);
+system(command_compile); % Render references
 
 %% Delete temporary files
 system(char(strcat({'rm '}, student_filepath, '.aux')));
 system(char(strcat({'rm '}, student_filepath, '.log')));
 system(char(strcat({'rm '}, student_filepath, '.out')));
-system(char(strcat({'rm '}, student_filepath, '.tex')));
+% system(char(strcat({'rm '}, student_filepath, '.tex')));
 
 %% Create email
 if mt_settings.send_emails

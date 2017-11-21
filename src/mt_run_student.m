@@ -3,7 +3,7 @@
 % Marking Matlab Toolbox
 % Copyright Enzo De Sena 2017
 
-function mark = mt_run_student(student_data, student_marks, ...
+function [mark, penalties] = mt_run_student(student_data, student_marks, ...
                                questions_title, mt_settings)
 student_filepath = mt_filepath(mt_settings.output_dir, student_data);
 

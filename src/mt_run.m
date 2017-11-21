@@ -27,15 +27,22 @@ if nargin == 2 % If selected a specific student
 end
 
 marks = nan(num_students, 1);
+penalties = nan(num_students, num_questions);
 for student_id = 1:num_students % First row is variable names
     student_data = mt_create_student_struct(students_data(student_id, :));
-    student_marks = remarks(student_id, :);
+    student_remarks = remarks(student_id, :);
     
     % Run student report
-    marks(student_id) = mt_run_student(student_data, student_marks, ...
-                                       questions_title, mt_settings);
+    [marks(student_id), penalties(student_id,:)] = ...
+        mt_run_student(student_data, student_remarks, ...
+                       questions_title, mt_settings);
 end
 
+text = mt_generate_marks_table(marks, penalties, students_data, remarks, ...
+                               questions_title, mt_settings);      
+mt_write_text_file(strcat(mt_settings.output_dir, '/_rendered_marks.txt'), text);
+
+                            
 %% Display info
 display(newline);
 display(strcat('Number of students: ', num2str(num_students)));

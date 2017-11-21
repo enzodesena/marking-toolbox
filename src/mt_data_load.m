@@ -47,6 +47,6 @@ end
 
 questions_title = data(1,6:end);
 % First five columns: name, surname, URN, email, # days delay
-students_data = data(2:end,1:5);
+students_data = strtrim(data(2:end,1:5));
 remarks = data(2:end,6:end);
 

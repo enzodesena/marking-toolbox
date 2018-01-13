@@ -11,11 +11,14 @@ function tex = mt_generate_feedback(student_data, questions_title, ...
 tex = fileread(mt_settings.feedback_template_filename);
 
 %% Change template title
+[~, late_message] = mt_late_submission(student_data.days_of_delay, mt_settings);
+
 tex = strrep(tex, 'MT_DOCUMENT_TITLE', ...
                             mt_settings.feedback_title);
 tex = strrep(tex, 'MT_STUDENT_NAME', student_data.name);
 tex = strrep(tex, 'MT_STUDENT_SURNAME', student_data.surname);
 tex = strrep(tex, 'MT_STUDENT_MARK', num2str(mark));
+tex = strrep(tex, 'MT_LATE_REMARK', late_message);
 tex = strrep(tex, 'MT_OVERALL_REMARK', mt_overall_remark(mark, mt_settings));
 
 tex_rmks = string;

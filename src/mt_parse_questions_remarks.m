@@ -4,7 +4,7 @@
 % Copyright Enzo De Sena 2017
 
 function [penalties, remarks, log] = ...
-    mt_parse_questions_remarks(student_marks, cw_settings)
+    mt_parse_questions_remarks(student_marks, questions_title, cw_settings)
 
 %% Check consistency of inputs
 [temp, num_questions] = size(student_marks);
@@ -20,7 +20,9 @@ for question_id = 1:num_questions
     remark_str = student_marks{question_id};
     
     [penalties(question_id), remarks{question_id}, question_log] = ...
-        mt_parse_question_remarks(remark_str, cw_settings);
+        mt_parse_question_remarks(remark_str, ...
+                                  questions_title{question_id}, ...
+                                  cw_settings);
     
     log = log + 'Question id ' + num2str(question_id) + ':' + newline + ...
                  question_log + newline + newline;

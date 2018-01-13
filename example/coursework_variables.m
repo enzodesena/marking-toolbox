@@ -6,11 +6,20 @@ mt_settings.initial_mark = 100;
 mt_settings.penalty_per_day_of_delay = -10;
 
 %% Common mistakes
-mt_settings.macros = {'P11_GEQ', 'Hello GEQ: (penalty:-5)';
-                      'P11_OTH', 'Hellao OTH: (penalty:+5)'};
+mt_settings.macros = {'P11_GEQ', 'Hello GEQ: [penalty:-5] [solution]\n\n';
+                      'P11_OTH', 'Hellao OTH: [penalty:+5]\n\n'};
 
+mt_settings.overall_remarks = {'100', '100', 'Your coursework is flawless.';
+  '80', '99', 'Your coursework is excellent.';
+  '70', '79', 'Your coursework is very good.';
+  '60', '69', 'Your coursework is good.';
+  '56', '59', 'Your coursework is ok.';
+  '0', '55', 'Your coursework could be better. Please carefully revise this feedback, and arrange a tutorial with me so we can go over the coursework together.'};
+                  
 %% Directories and filenames
 mt_settings.output_dir = 'outputs';
+mt_settings.solution_tex_dir = 'solution_tex';
+mt_settings.solution_message = 'Please see the correct solution below. \n\n';
 mt_settings.feedback_template_filename = 'feedback_template.tex';
 mt_settings.marks_filename = 'Workbook1.txt';
 mt_settings.pdflatex_filename = '/Library/TeX/texbin/pdflatex';

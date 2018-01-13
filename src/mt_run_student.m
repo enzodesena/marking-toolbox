@@ -9,7 +9,7 @@ student_filepath = mt_filepath(mt_settings.output_dir, student_data);
 
 %% Parse marks
 [penalties, questions_remarks, log] = ...
-        mt_parse_questions_remarks(student_marks, mt_settings);
+        mt_parse_questions_remarks(student_marks, questions_title, mt_settings);
 
 %% Calculate student final mark
 % We are adding the penalty because the convention used throughout the

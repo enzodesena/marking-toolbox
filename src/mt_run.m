@@ -39,7 +39,8 @@ for student_id = 1:num_students % First row is variable names
 end
 
 text = mt_generate_marks_table(marks, penalties, students_data, remarks, ...
-                               questions_title, mt_settings);      
+                               questions_title, mt_settings);     
+mt_check_warnings(text);
 mt_write_text_file(strcat(mt_settings.output_dir, '/_rendered_marks.txt'), text);
 
                             

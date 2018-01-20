@@ -1,4 +1,5 @@
-% Generate marks and latex feedback for coursework
+% Generate late submission message and penalty (edit this file to suit your
+% marking rules)
 % 
 % Marking Toolbox
 % Copyright Enzo De Sena 2018

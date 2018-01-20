@@ -23,8 +23,8 @@ if solution_needed
           question_title + " but file " + ...
           solution_filename + " cannot found."));
     
-    solution_tex = mt_settings.solution_message + ...
-        "\input{" + solution_filename + "}";
+    solution_tex = "\n\n" + mt_settings.solution_message + "\n\n \vspace{10px}\n " + ...
+        "\input{../" + solution_filename + "}";
     
     % Remove [solution]
     question_str = question_str + solution_tex;

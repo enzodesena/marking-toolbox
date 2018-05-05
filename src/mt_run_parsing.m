@@ -9,7 +9,7 @@ function mt_run_parsing(settings_filename)
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
 [questions_title, students_data, remarks] = ...
-            mt_raw_data_load(mt_settings.marks_filename);
+            mt_load_raw_data(mt_settings.marks_filename);
 
         
 %% Create output directory, if it doesn't exist already

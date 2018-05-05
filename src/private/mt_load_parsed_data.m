@@ -4,9 +4,9 @@
 % Copyright Enzo De Sena 2017
 
 function [students_data, final_mark, overall_remarks, questions_title, remarks] = ...
-        mt_parsed_data_load(data_filename)
+        mt_load_parsed_data(data_filename)
 
-data = mt_data_load(data_filename, newline);
+data = mt_load_data(data_filename, newline);
 
 
 

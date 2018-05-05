@@ -4,9 +4,9 @@
 % Copyright Enzo De Sena 2017
 
 function [questions_title, students_data, remarks] = ...
-            mt_raw_data_load(data_filename)
+            mt_load_raw_data(data_filename)
 
-data = mt_data_load(data_filename, '\r');
+data = mt_load_data(data_filename, '\r');
 
 %% Read first row
 assert(strcmp(data{1,1}, 'Name'), ...

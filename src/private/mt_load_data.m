@@ -3,7 +3,7 @@
 % Marking Matlab Toolbox
 % Copyright Enzo De Sena 2017
 
-function data = mt_data_load(data_filename, row_delimiter)
+function data = mt_load_data(data_filename, row_delimiter)
 
 assert(exist(data_filename,'file') == 2, ...
        strcat('File not found: ',data_filename));

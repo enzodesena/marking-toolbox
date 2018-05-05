@@ -9,7 +9,7 @@ function mt_run_feedback(settings_filename, only_student_id)
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
 [students_data, final_mark, overall_remarks, questions_title, remarks] = ...
-        mt_parsed_data_load(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
+        mt_load_parsed_data(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
 
 %% Define variables
 [num_students, num_questions] = size(remarks);

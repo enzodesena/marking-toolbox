@@ -10,6 +10,6 @@ for n=1:num_levels
 end
 
 if late_penalty < 0
-    remark = remark + "Your coursework incurred a~$" + num2str(late_penalty) +...
-        "$\% penalty (this penalty is already included in the overall mark above).";
+    remark = remark + " Your coursework incurred a~$" + num2str(late_penalty) +...
+        "$\% late submission penalty (this penalty is already included in the overall mark above).";
 end

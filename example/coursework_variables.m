@@ -30,7 +30,7 @@ mt_settings.send_emails = true;
 mt_settings.email_subject = mt_settings.feedback_title;
 mt_settings.email_template = 'email_template.txt';
 mt_settings.feedback_description = ...
-            'the first coursework of the Sound Synthesis module';
+            'the first coursework of the ASP module';
 
 mt_settings.sender_email = 'Enzo De Sena <ed0018@surrey.ac.uk>';
 mt_settings.email_appears_in_mac_mail = 'true';

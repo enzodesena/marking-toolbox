@@ -8,8 +8,8 @@ function mt_run_feedback(settings_filename, only_student_id)
 
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
-[questions_title, students_data, remarks] = ...
-            mt_parsed_data_load(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
+[students_data, final_mark, overall_remarks, questions_title, remarks] = ...
+        mt_parsed_data_load(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
 
 %% Define variables
 [num_students, num_questions] = size(remarks);
@@ -23,14 +23,12 @@ end
 
 marks = nan(num_students, 1);
 penalties = nan(num_students, num_questions);
-for student_id = 1:num_students % First row is variable names
+for student_id = 1:num_students
     student_data = mt_create_student_struct(students_data(student_id, :));
-    student_remarks = remarks(student_id, :);
-    
     % Run student report
-    [marks(student_id), penalties(student_id,:)] = ...
-        mt_run_student(student_data, student_remarks, ...
-                       questions_title, mt_settings);
+    mt_run_student(student_data, final_mark(student_id), ...
+                   overall_remarks{student_id}, questions_title, ...
+                   remarks(student_id, :), mt_settings)        
 end
 
                             

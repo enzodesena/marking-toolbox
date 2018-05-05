@@ -3,8 +3,8 @@
 % Marking Matlab Toolbox
 % Copyright Enzo De Sena 2017
 
-function [questions_title, students_data, remarks] = ...
-            mt_parsed_data_load(data_filename)
+function [students_data, final_mark, overall_remarks, questions_title, remarks] = ...
+        mt_parsed_data_load(data_filename)
 
 data = mt_data_load(data_filename, newline);
 
@@ -25,11 +25,11 @@ assert(strcmp(data{1,5}, 'Late submission penalty'), ...
 %% Convert to string
 questions_columns = data(1,10:end);
 % check that for each question there is a penalty column
-length(questions_columns)
 assert(rem(length(questions_columns),2)==0); 
 questions_title = questions_columns(1:2:end);
 
 % First five columns: name, surname, URN, email, # days delay
 students_data = strtrim(data(2:end,1:5));
-remarks = data(2:end,6:end);
-
+final_mark = str2double(data(2:end,6));
+overall_remarks = data(2:end, 9);
+remarks = data(2:end,10:2:end);

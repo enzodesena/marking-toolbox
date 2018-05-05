@@ -30,7 +30,7 @@ data = cell(num_rows, num_columns);
 data(1,:) = data_first_row;
 
 for n=2:num_rows
-    data(n,:) = strsplit(data_in_rows{n},'\t','CollapseDelimiters',0)
+    data(n,:) = strsplit(data_in_rows{n},'\t','CollapseDelimiters',0);
 end
 
 %% Convert to string

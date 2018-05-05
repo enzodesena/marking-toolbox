@@ -1,10 +1,6 @@
 %% Defitions
 mt_settings = struct();
 
-%% Marks handling
-mt_settings.initial_mark = 100;
-mt_settings.penalty_per_day_of_delay = -10;
-
 %% Common mistakes
 mt_settings.macros = {'P11_GEQ', 'Hello GEQ: [penalty:-5] [solution]\n\n';
                       'P11_OTH', 'Hellao OTH: [penalty:+5]\n\n'};

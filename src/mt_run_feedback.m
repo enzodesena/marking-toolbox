@@ -3,21 +3,16 @@
 % Marking Matlab Toolbox
 % Copyright Enzo De Sena 2017
 
-function mt_run(settings_filename, only_student_id)
+function mt_run_feedback(settings_filename, only_student_id)
 
 
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
 [questions_title, students_data, remarks] = ...
-            mt_data_load(mt_settings.marks_filename);
+            mt_parsed_data_load(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
 
 %% Define variables
 [num_students, num_questions] = size(remarks);
-
-%% Replace macros
-if isfield(mt_settings, 'macros') == 1
-    remarks = mt_replace_macros(remarks, mt_settings.macros);
-end
 
 %% Run reports
 if nargin == 2 % If selected a specific student
@@ -38,21 +33,6 @@ for student_id = 1:num_students % First row is variable names
                        questions_title, mt_settings);
 end
 
-text = mt_generate_marks_table(marks, penalties, students_data, remarks, ...
-                               questions_title, mt_settings);     
-mt_check_warnings(text);
-mt_write_text_file(strcat(mt_settings.output_dir, '/_rendered_marks.txt'), text);
-
                             
-%% Display info
-display(newline);
-display(strcat('Number of students: ', num2str(num_students)));
-display(strcat('Number of questions/points: ', num2str(num_questions)));
-display(strcat('Average mark: ', num2str(mean(marks))));
-display(strcat('Median mark: ', num2str(median(marks))));
-display(strcat('Standard deviation: ', num2str(std(marks))));
-display(strcat('Max mark: ', num2str(max(marks))));
-display(strcat('Min mark: ', num2str(min(marks))));
-
 end
 

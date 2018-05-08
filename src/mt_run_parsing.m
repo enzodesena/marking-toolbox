@@ -22,7 +22,7 @@ end
 
 %% Replace macros
 if isfield(mt_settings, 'macros') == 1
-    remarks = mt_replace_macros(remarks, mt_settings.macros);
+    remarks = mt_replace_macros(remarks, mt_settings);
 end
 
 %% Run reports

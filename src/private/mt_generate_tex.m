@@ -8,7 +8,7 @@ function tex = mt_generate_tex(student_data, mark, overall_remarks, ...
                                mt_settings)
 
 %% Read template
-tex = fileread(mt_settings.feedback_template_filename);
+tex = fileread(mt_settings.tex_template_filename);
 
 %% Change template title
 tex = strrep(tex, 'MT_DOCUMENT_TITLE', ...
@@ -24,12 +24,20 @@ num_questions = length(questions_title);
 assert(length(questions_remarks) == num_questions);
 
 for i = 1:num_questions
-    if strlength(questions_remarks{i}) == 0
-        questions_remarks{i} = mt_settings.message_no_remarks;
-    end
     questions_remarks{i} = strrep(questions_remarks{i}, '\n', newline);
-    tex_rmks = tex_rmks + '\section*{' + questions_title{i} + '}' + newline;
-    tex_rmks = tex_rmks + questions_remarks{i} + newline + newline;
+    if strlength(questions_remarks{i})>0
+        tex_rmks = tex_rmks + '\section*{' + questions_title{i} + '}' + newline;
+        
+        if isfield(mt_settings, 'tex_section_preamble') == 1
+            tex_rmks = tex_rmks + mt_settings.tex_section_preamble;
+        end
+        
+        tex_rmks = tex_rmks + questions_remarks{i} + newline + newline;
+        
+        if isfield(mt_settings, 'tex_section_postamble') == 1
+            tex_rmks = tex_rmks + mt_settings.tex_section_postamble;
+        end
+    end
 end
 
 tex = strrep(tex, 'MT_QUESTIONS_REMARKS', tex_rmks);

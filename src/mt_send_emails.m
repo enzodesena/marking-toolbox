@@ -13,7 +13,7 @@ pause
 
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
-[~, students_data, ~] = mt_raw_data_load(mt_settings.marks_filename);
+[~, students_data, ~] = mt_load_raw_data(mt_settings.marks_filename);
         
 %% Define variables
 [num_students, ~] = size(students_data);

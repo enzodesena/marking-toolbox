@@ -16,7 +16,7 @@ mt_settings.overall_remarks = {'100', '100', 'Your coursework is flawless.';
 mt_settings.output_dir = 'outputs';
 mt_settings.solution_tex_dir = 'solution_tex';
 mt_settings.solution_message = 'Please see the correct solution below. \n\n';
-mt_settings.feedback_template_filename = 'feedback_template.tex';
+mt_settings.tex_template_filename = 'feedback_template.tex';
 mt_settings.marks_filename = 'Workbook1.txt';
 mt_settings.pdflatex_filename = '/Library/TeX/texbin/pdflatex';
 

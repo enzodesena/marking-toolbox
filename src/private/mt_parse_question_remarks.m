@@ -24,8 +24,8 @@ for penalty_id = 1:length(penalties)
     penalty_str = penalties{penalty_id};
     
     % Check correct format of string
-    assert(strlength(penalty_str)>=2, wrong_format_msg);
-    assert(strlength(penalty_str)<=3, wrong_format_msg);
+    assert(strlength(penalty_str)>=2, strcat(wrong_format_msg, '. It is ''', penalty_str, ''''));
+    assert(strlength(penalty_str)<=3, strcat(wrong_format_msg, '. It is ''', penalty_str, ''''));
     assert(penalty_str(1) == '+' || penalty_str(1) == '-', wrong_format_msg);
     assert(mt_char_is_num(penalty_str(2)), wrong_format_msg);
     if strlength(penalty_str) == 3

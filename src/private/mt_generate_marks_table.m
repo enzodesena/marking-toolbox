@@ -5,7 +5,7 @@ text = "Name" +char(9)+ "Surname" +char(9)+...
     "Student ID" +char(9)+ "Email"+char(9)+...
     "Late submission penalty"+char(9)+...
     "Overall mark (after late submission penalty)"+char(9)+...
-    "Raw mark"+char(9)+...
+    "Adjusted mark"+char(9)+...
     "Total questions penalty"+char(9)+...
     "Overall remark"+char(9);
 
@@ -22,8 +22,9 @@ for student_id=1:num_students
     student_data = mt_create_student_struct(students_data(student_id,:));
     % Calculate marks
     total_penalty = sum(penalties(student_id,:));
-    raw_mark = 100+total_penalty;
-    mark_after_late_penalty = raw_mark + student_data.late_submission_penalty;
+    mark = round(mt_settings.starting_mark + total_penalty * mt_settings.penalty_multiplier);
+	mark = max(min(mark, mt_settings.maximum_mark), mt_settings.minimum_mark);
+    mark_after_late_penalty = mark + student_data.late_submission_penalty;
     
     % Print student data
     text = text + string(strjoin(cellstr(students_data(student_id,1:4)), '\t')) + char(9);
@@ -31,12 +32,12 @@ for student_id=1:num_students
     % Print marks
     text = text + num2str(student_data.late_submission_penalty) + char(9);
     text = text + num2str(mark_after_late_penalty) + char(9);
-    text = text + num2str(raw_mark) + char(9);
+    text = text + num2str(mark) + char(9);
     text = text + num2str(total_penalty) + char(9);
     
     % Print overall remarks
     
-    text = text + mt_overall_remark(raw_mark, student_data.late_submission_penalty, mt_settings) + char(9);
+    text = text + mt_overall_remark(mark, student_data.late_submission_penalty, mt_settings) + char(9);
     
     for question_id=1:num_questions
         if isfield(mt_settings, 'message_no_remarks') && ...

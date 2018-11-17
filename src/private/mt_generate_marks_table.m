@@ -36,7 +36,6 @@ for student_id=1:num_students
     text = text + num2str(total_penalty) + char(9);
     
     % Print overall remarks
-    
     text = text + mt_overall_remark(mark, student_data.late_submission_penalty, mt_settings) + char(9);
     
     for question_id=1:num_questions
@@ -61,7 +60,7 @@ statistics = statistics + char(9)+char(9)+char(9)+char(9) + ...
     "=AVERAGE(F2:F"+ num2str(num_students+1) +")" + newline;
 
 statistics = statistics + char(9)+char(9)+char(9)+char(9) + ...
-    "Meadian mark: " + char(9) + ...
+    "Median mark: " + char(9) + ...
     "=MEDIAN(F2:F"+ num2str(num_students+1) +")" + newline;
 
 statistics = statistics + char(9)+char(9)+char(9)+char(9) + ...

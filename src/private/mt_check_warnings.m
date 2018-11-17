@@ -25,14 +25,34 @@ if run_length > max_capital_run
          "'."));
 end
 
-if contains(text, 'penatly') || contains(text, 'penaly') ...
-        || contains(text, 'penaty') || contains(text, 'pnalty') ...
-        || contains(text, 'pealty') || contains(text, 'peanlty') ...
-        || contains(text, 'penalyt') || contains(text, 'pnealty')
-    warning("There is at least one word similar to the word 'penalty', " + ...
+warning_message = "There is at least one word similar to the word 'penalty', " + ...
         "which may mean that you made a mistake in writing it, and " + ...
         "thus that it did not get recognised by the system and counted " + ...
-        "towards the student mark");
+        "towards the student mark: ";
+    
+if contains(text, 'penatly')
+    warning(strcat(warning_message, 'penatly'));
+if contains(text, 'penaly')
+    warning(strcat(warning_message, 'penaly'));
+end
+if contains(text, 'penaty')
+    warning(strcat(warning_message, 'penaty'));
+end
+if contains(text, 'pnalty')
+    warning(strcat(warning_message, 'pnalty'));
+end
+if contains(text, 'pealty')
+    warning(strcat(warning_message, 'pealty'));
+end
+if contains(text, 'peanlty')
+    warning(strcat(warning_message, 'peanlty'));
+end
+if contains(text, 'penalyt')
+    warning(strcat(warning_message, 'penalyt'));
+end
+if contains(text, 'pnealty')
+    warning(strcat(warning_message, 'pnealty'));
+end
 end
 
 function [len_max, run_initial_position] = mt_run_length(vector)

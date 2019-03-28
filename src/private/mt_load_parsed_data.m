@@ -7,8 +7,8 @@ function [students_data, final_mark, overall_remarks, questions_title, remarks] 
         mt_load_parsed_data(data_filename)
 
 data = mt_load_data(data_filename, newline);
-
-
+[num_rows, ~] = size(data);
+num_students = num_rows - 1; % The first row is for headers
 
 %% Read first row
 assert(strcmp(data{1,1}, 'Name'), ...
@@ -30,6 +30,8 @@ questions_title = questions_columns(1:2:end);
 
 % First five columns: name, surname, URN, email, # days delay
 students_data = strtrim(data(2:end,1:5));
-final_mark = str2double(data(2:end,6));
+for n=1:num_students
+    final_mark(n) = str2double(data{n+1,6});
+end
 overall_remarks = data(2:end, 9);
 remarks = data(2:end,10:2:end);

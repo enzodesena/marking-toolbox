@@ -11,5 +11,7 @@ run(settings_filename) % Load settings
 assert(exist('mt_settings', 'var') == 1, ...
         'File coursework_variables does not contain variable mt_settings');
 
-[~, M] = size(mt_settings.macros);
-assert(M==2, 'The macros variable has more than 2 columns');
+[N, M] = size(mt_settings.macros);
+if N > 0
+    assert(M==2, 'The macros variable has more than 2 columns');
+end

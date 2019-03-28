@@ -13,7 +13,8 @@ pause
 
 %% Load coursework variables and marks table
 mt_settings = mt_settings_load(settings_filename);
-[~, students_data, ~] = mt_load_raw_data(mt_settings.marks_filename);
+[students_data, ~, ~, ~, ~] = ...
+        mt_load_parsed_data(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
         
 %% Define variables
 [num_students, ~] = size(students_data);
@@ -28,7 +29,9 @@ for student_id = 1:num_students % First row is variable names
     assert(exist(student_filepath + '.txt','file') == 2, 'File not found');
     message = fileread(char(student_filepath + '.txt'));
     assert(strlength(message) > 0);
-    assert(exist(student_filepath + '.pdf','file') == 2, 'File not found');
+    if mt_settings.generate_pdf
+      assert(exist(student_filepath + '.pdf','file') == 2, 'File not found');
+    end
 end
 
 disp('All files are present.');

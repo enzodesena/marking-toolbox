@@ -14,4 +14,7 @@ email = strrep(email, 'MT_FEEDBACK_DESCRIPTION', ...
                        mt_settings.feedback_description);
 email = strrep(email, 'MT_STUDENT_MARK', num2str(mark));
 
+overall_remark = mt_overall_remark(mark, student_data.late_submission_penalty, mt_settings);
+email = strrep(email, 'MT_OVERALL_REMARK', overall_remark);
+
 end

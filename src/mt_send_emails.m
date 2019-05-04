@@ -46,7 +46,7 @@ for student_id = 1:num_students % First row is variable names
     
     disp('Sending out email to ' + student_data.name + {' '} + ...
         student_data.surname + {' ('} + student_data.email + ').');
-    system(char('cat ' + student_filepath + '.script | osascript'));
+    system(char('cat ' + student_filepath + '.scpt | osascript'));
 end
 
 disp('All emails sent.');

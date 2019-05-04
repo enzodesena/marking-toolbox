@@ -44,6 +44,6 @@ if mt_settings.send_emails
                                      email, ...
                                      attachment, ... 
                                      mt_settings);
-    mt_write_text_file(student_filepath + '.script', script);
+    mt_write_text_file(student_filepath + '.scpt', script);
 end
 end

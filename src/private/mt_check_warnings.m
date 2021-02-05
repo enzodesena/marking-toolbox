@@ -9,10 +9,14 @@ function mt_check_warnings(text)
 %% Check if there are long runs of capital letters (possible unreplaced macros).
 max_capital_run = 3; % Edit if you want
 
-capital_letters = isstrprop(text, 'upper');
-[run_length, run_initial_position] = mt_run_length(capital_letters);
 
-if run_length > max_capital_run
+strings_above_max_capital_run = mt_run_length(text, max_capital_run);
+
+if ~isempty(strings_above_max_capital_run)
+    strings_together = '';
+    for n=1:length(strings_above_max_capital_run)
+        strings_together = strcat(strings_together, " '", strings_above_max_capital_run{n},"'");
+    end
     warning(char("There are some runs of capital letters longer than " + ...
         num2str(max_capital_run) + " characters. This may mean there are " +...
         "unreplaced macros. One way this can happen is if you make a " + ...
@@ -20,9 +24,7 @@ if run_length > max_capital_run
         "is when two macro keywords contain parts of each other, " + ...
         "e.g. NONEEDSIGFIG and SIGFIG. In case this happens, you should " +...
         "reorder the macros so that the longer one appears first. " + ...
-        "The longest run of capital letters is: '" + ...
-         extractBetween(text,run_initial_position, run_initial_position+run_length-1) + ...
-         "'."));
+        "These are the detected runs of capital letters: " + strings_together));
 end
 
 warning_message = "There is at least one word similar to the word 'penalty', " + ...
@@ -55,18 +57,47 @@ if contains(text, 'pnealty')
 end
 end
 
-function [len_max, run_initial_position] = mt_run_length(vector)
-len_max = 1;
-run_length = 1;
-run_initial_position = 1;
-for n = 2:numel(vector)
-    if vector(n) == vector(n-1) && vector(n) == 1
-        run_length = run_length+1;
-    else
-        if run_length > len_max
-            run_initial_position = n-run_length;
-            len_max = run_length;
+function unique_strings = mt_run_length(text, max_capital_run)
+
+capital_letters = isstrprop(text, 'upper');
+
+strings = {};
+
+
+run_length = 0;
+for n = 1:numel(capital_letters)
+    if run_length > 0 && (capital_letters(n) == 0 || n == numel(capital_letters)) % run ended
+        if run_length > max_capital_run
+            strings{end+1} = extractBetween(text, start_of_run, start_of_run + run_length -1);
         end
-        run_length = 1;
+        run_length = 0;
+        start_of_run = nan;
+        continue;
+    end
+    
+    if capital_letters(n) == 1
+        if run_length == 0
+            start_of_run = n;
+        end
+        run_length = run_length + 1;
     end
 end
+
+unique_strings = {};
+
+for n=1:length(strings)
+    if ~is_string_in_cell_array(strings{n}, unique_strings)
+        unique_strings{end+1} = strings{n};
+    end
+end
+
+
+
+function result = is_string_in_cell_array(string, cell_array)
+for n=1:length(cell_array)
+    if strcmp(string, cell_array{n})
+        result = true;
+        return;
+    end
+end
+result = false;

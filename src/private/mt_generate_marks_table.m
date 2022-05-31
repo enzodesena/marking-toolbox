@@ -1,4 +1,4 @@
-function [text, statistics] = mt_generate_marks_table(penalties, students_data, students_remarks, ...
+function [text, statistics, marks_before_penalty, marks_after_penalty] = mt_generate_marks_table(penalties, students_data, students_remarks, ...
                                                       questions_title, mt_settings)
 
 text = "Name" +char(9)+ "Surname" +char(9)+...
@@ -18,6 +18,8 @@ end
 text = text + newline;
 
 [num_students, num_questions] = size(students_remarks);
+marks_before_penalty = nan(num_students, 1);
+marks_after_penalty = nan(num_students, 1);
 for student_id=1:num_students
     student_data = mt_create_student_struct(students_data(student_id,:));
     % Calculate marks
@@ -25,6 +27,9 @@ for student_id=1:num_students
     mark = round(mt_settings.starting_mark + total_penalty * mt_settings.penalty_multiplier);
 	mark = max(min(mark, mt_settings.maximum_mark), mt_settings.minimum_mark);
     mark_after_late_penalty = mark + student_data.late_submission_penalty;
+    
+    marks_before_penalty(student_id) = mark;
+    marks_after_penalty(student_id) = mark_after_late_penalty;
     
     % Print student data
     text = text + string(strjoin(cellstr(students_data(student_id,1:4)), '\t')) + char(9);

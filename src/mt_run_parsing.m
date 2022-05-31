@@ -40,18 +40,26 @@ for student_id = 1:num_students % First row is variable names
     mt_write_text_file(student_filepath + '.log', log);
 end
 
-[text, statistics] = mt_generate_marks_table(penalties, students_data, remarks, ...
+[text, statistics, marks_before_penalty, marks_after_penalty] = mt_generate_marks_table(penalties, students_data, remarks, ...
                                              questions_title, mt_settings);
 
 mt_check_warnings(text);
 parsed_filename = strcat(mt_settings.output_dir, '/_parsed_marks.txt');
 mt_write_text_file(parsed_filename, text + statistics);
 
-
 %% Display info
 disp('Parsing finished!');
 disp(strcat('Number of students: ', num2str(num_students)));
 disp(strcat('Number of questions: ', num2str(num_questions)));
+disp(' ');
+disp(strcat('Minimum mark (before late penalties): ', num2str(min(marks_before_penalty))));
+disp(strcat('Maximum mark (before late penalties): ', num2str(max(marks_before_penalty))));
+disp(strcat('Median mark (before late penalties): ', num2str(median(marks_before_penalty))));
+disp(strcat('Mean mark (before late penalties): ', num2str(mean(marks_before_penalty))));
+disp(strcat('Minimum mark (after late penalties): ', num2str(min(marks_after_penalty))));
+disp(strcat('Maximum mark (after late penalties): ', num2str(max(marks_after_penalty))));
+disp(strcat('Median mark (after late penalties): ', num2str(median(marks_after_penalty))));
+disp(strcat('Mean mark (after late penalties): ', num2str(mean(marks_after_penalty))));
 disp(' ');
 disp(strcat('The output spreadsheet can be found at:', parsed_filename));
 disp('If you dont need to modify anything there, you can now run');

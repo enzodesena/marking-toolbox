@@ -13,7 +13,7 @@ if mt_settings.generate_pdf
     latex = mt_generate_tex(student_data, mark, overall_remarks, ...
                             questions_title, questions_remarks, ...
                             mt_settings);
-    mt_write_text_file(student_filepath + '.tex', latex);
+    mt_write_text_file(strcat(student_filepath, '.tex'), latex);
 
     % Create pdf file
     command_compile = char(strcat(mt_settings.pdflatex_filename, {' '}, ...
@@ -31,7 +31,7 @@ end
 %% Create email
 if mt_settings.send_emails
     email = mt_generate_email(student_data, mark, mt_settings);
-    mt_write_text_file(student_filepath + '.txt', email);
+    mt_write_text_file(strcat(student_filepath, '.txt'), email);
     
     if mt_settings.generate_pdf
         attachment = strcat(pwd, '/', student_filepath, '.pdf');
@@ -44,6 +44,6 @@ if mt_settings.send_emails
                                      email, ...
                                      attachment, ... 
                                      mt_settings);
-    mt_write_text_file(student_filepath + '.scpt', script);
+    mt_write_text_file(strcat(student_filepath, '.scpt'), script);
 end
 end

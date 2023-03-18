@@ -37,7 +37,7 @@ for student_id = 1:num_students % First row is variable names
             mt_parse_questions_remarks(remarks(student_id, :), questions_title, mt_settings);
 
     %% Write out log text file
-    mt_write_text_file(student_filepath + '.log', log);
+    mt_write_text_file(strcat(student_filepath, '.log'), log);
 end
 
 [text, statistics, marks_before_penalty, marks_after_penalty] = mt_generate_marks_table(penalties, students_data, remarks, ...

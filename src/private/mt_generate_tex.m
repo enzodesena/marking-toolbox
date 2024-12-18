@@ -15,7 +15,7 @@ tex = strrep(tex, 'MT_DOCUMENT_TITLE', ...
                             mt_settings.feedback_title);
 tex = strrep(tex, 'MT_STUDENT_NAME', student_data.name);
 tex = strrep(tex, 'MT_STUDENT_SURNAME', student_data.surname);
-tex = strrep(tex, 'MT_STUDENT_ID', student_data.urn);
+tex = strrep(tex, 'MT_STUDENT_ID', string(student_data.urn));
 tex = strrep(tex, 'MT_STUDENT_MARK', num2str(mark));
 tex = strrep(tex, 'MT_OVERALL_REMARK', overall_remarks);
 

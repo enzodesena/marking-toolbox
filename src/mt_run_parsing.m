@@ -1,7 +1,7 @@
 % Generate marks and latex feedback for coursework
 % 
 % Marking Matlab Toolbox
-% Copyright Enzo De Sena 2017
+% Copyright Enzo De Sena 2017-2025
 
 function mt_run_parsing(settings_filename)
 

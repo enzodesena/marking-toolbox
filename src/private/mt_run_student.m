@@ -6,6 +6,8 @@
 function mt_run_student(student_data, mark, overall_remarks, ...
                         questions_title, questions_remarks, mt_settings)
 student_filepath = mt_filepath(mt_settings.output_dir, student_data);
+student_filepath_with_escapes = regexprep(student_filepath, ' ', '\\ ');
+
 
 
 if mt_settings.generate_pdf
@@ -18,14 +20,14 @@ if mt_settings.generate_pdf
     % Create pdf file
     command_compile = char(strcat(mt_settings.pdflatex_filename, {' '}, ...
                  {'-output-directory '}, mt_settings.output_dir, {' '}, ...
-                 student_filepath, '.tex'));
+                 student_filepath_with_escapes, '.tex'));
     system(command_compile);
     system(command_compile); % Render references
 
     % Delete temporary files
-    system(char(strcat({'rm '}, student_filepath, '.aux')));
-    system(char(strcat({'rm '}, student_filepath, '.log')));
-    system(char(strcat({'rm '}, student_filepath, '.out')));
+    system(char(strcat({'rm '}, student_filepath_with_escapes, '.aux')));
+    system(char(strcat({'rm '}, student_filepath_with_escapes, '.log')));
+    system(char(strcat({'rm '}, student_filepath_with_escapes, '.out')));
 end
 
 %% Create email

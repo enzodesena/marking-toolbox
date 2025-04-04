@@ -21,17 +21,20 @@ assert(strcmp(data{1,4}, 'Email'), ...
   'The fourth element of the first row should be Email');
 assert(strcmp(data{1,5}, 'Late submission penalty'), ...
   'The fifth element of the first row should be Late submission penalty');
+assert(strcmp(data{1,6}, 'Output filename'), ...
+  'The sixth element of the first row should be Output filename. The contents of that columns should not include the file extension.');
+
 
 %% Convert to string
-questions_columns = data(1,10:end);
+questions_columns = data(1,11:end);
 % check that for each question there is a penalty column
 assert(rem(length(questions_columns),2)==0); 
 questions_title = questions_columns(1:2:end);
 
 % First five columns: name, surname, URN, email, # days delay
-students_data = strtrim(data(2:end,1:5));
+students_data = strtrim(data(2:end,1:6));
 for n=1:num_students
-    final_mark(n) = str2double(data{n+1,6});
+    final_mark(n) = str2double(data{n+1,7});
 end
-overall_remarks = data(2:end, 9);
-remarks = data(2:end,10:2:end);
+overall_remarks = data(2:end, 10);
+remarks = data(2:end,11:2:end);

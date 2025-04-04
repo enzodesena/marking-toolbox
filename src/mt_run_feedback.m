@@ -10,7 +10,6 @@ function mt_run_feedback(settings_filename, only_student_id)
 mt_settings = mt_settings_load(settings_filename);
 [students_data, final_mark, overall_remarks, questions_title, remarks] = ...
         mt_load_parsed_data(strcat(mt_settings.output_dir, '/_parsed_marks.txt'));
-
 %% Define variables
 [num_students, ~] = size(remarks);
 
